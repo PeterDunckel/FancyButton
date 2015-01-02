@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace FancyButton
@@ -16,9 +11,7 @@ namespace FancyButton
             InitializeComponent();
         }
 
-
-
-        private void addRequiredLabel(Control target)
+        private void AddRequiredLabel(Control target)
         {
             var newStar = new Label();
             newStar.Width = 15;
@@ -28,13 +21,11 @@ namespace FancyButton
             newStar.Font = new Font("", 14);
             newStar.Top = target.Top;
             newStar.Visible = true;
- 
             this.Controls.Add(newStar);
             toolTip1.SetToolTip(newStar, "REQUIRED");
-            return;
         }
 
-        private Label addTooltipLabel(Control target)
+        private void AddTooltipLabel(Control target)
         {
             var newLabel = new Label();
             newLabel.Width = 40;
@@ -42,19 +33,17 @@ namespace FancyButton
             newLabel.Left = target.Right + 10;
             newLabel.Top = target.Top;
             newLabel.Visible = true;
-
             this.Controls.Add(newLabel);
             toolTip1.SetToolTip(newLabel, target.Tag as String);
-            return newLabel;
         }
 
-        private void addHelperLabels(Control target)
+        private void AddHelperLabels(Control target)
         {
             if (target.Tag != null)
             {
-                addTooltipLabel(target);
+                AddTooltipLabel(target);
 
-                addRequiredLabel(target);
+                AddRequiredLabel(target);
             }
         }
 
@@ -64,7 +53,7 @@ namespace FancyButton
             {
                 if (cc is Button || cc is TextBox)
                 {
-                    addHelperLabels(cc);
+                    AddHelperLabels(cc);
                 }
             }
         }
